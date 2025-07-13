@@ -24,5 +24,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 ZSH_THEME="robbyrussell"
 
+bindkey '^L' autosuggest-accept
+
 source $ZSH/oh-my-zsh.sh
 
