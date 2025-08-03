@@ -12,7 +12,7 @@ class Installer:
         self.config_path = path
         self.install_command = {
                 "Darwin" : "brew install ",
-                "Linux" : "apt install -y "
+                "Linux" : "sudo apt install -y "
                 }
 
     def is_installed(self, app_name):
