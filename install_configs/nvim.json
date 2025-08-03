@@ -1,0 +1,39 @@
+{
+    "commands" : [
+        {
+            "name" : "curl",
+            "app" : true,
+            "os" : "Linux"
+        },
+        {
+            "name" : "mkdir -p ~/apps && cd ~/apps && curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && tar -C ~/apps -xzf nvim-linux-x86_64.tar.gz && echo PATH=\"\\$PATH:~/apps/nvim-linux-x86_64/bin\" >> ~/.zshrc",
+            "os" : "Linux"
+        },
+        {
+            "name" : "neovim",
+            "app" : true,
+            "os" : "Darwin"
+        },
+        {
+            "name" : "fzf",
+            "app" : true
+        },
+        {
+            "name" : "ripgrep",
+            "app" : true
+        },
+        {
+            "name" : "build-essential",
+            "app" : true,
+            "os" : "Linux"
+        },
+        {
+            "name" : "cmake",
+            "app" : true
+        },
+        {
+            "name" : "python3.12-venv",
+            "app" : true
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "commands" : [
+        {
+            "name" : "tmux",
+            "app" : true
+        },
+        {
+            "name" : "git",
+            "app" : true
+        },
+        {
+            "name" : "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+        }
+    ]
+}
+

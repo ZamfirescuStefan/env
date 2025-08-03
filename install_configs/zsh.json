@@ -1,0 +1,20 @@
+{
+    "commands" : [
+        {
+            "name" : "zsh",
+            "app" : true
+        },
+        {
+            "name" : "git",
+            "app" : true
+        },
+        {
+            "name" : "curl",
+            "app" : true
+        },
+        {
+            "name" : "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+        }
+    ]
+}
+
