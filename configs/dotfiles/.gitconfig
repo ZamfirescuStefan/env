@@ -1,0 +1,7 @@
+[alias]
+    co = checkout
+    lol = log --oneline --color
+[init]
+        defaultBranch = main
+[include]
+    path = ~/.gitconfig.local

@@ -2,41 +2,49 @@
 
 set -e
 
-CONFIG_SOURCE=".config"
-CONFIG_TARGET="$HOME/.config"
+CONFIGS_DIR="./configs"
+HOME_DIR="$HOME"
 TIMESTAMP=$(date +"%Y-%m-%d-%H-%M-%S")
 
-# Detect OS and install stow if missing
-install_stow() {
-  echo "Installing GNU Stow..."
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo apt update && sudo apt install -y stow
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install stow
-  else
-    echo "Unsupported OS: $OSTYPE"
-    exit 1
+echo "🔧 Preparing to link dotfiles from $CONFIGS_DIR"
+
+backup_if_exists() {
+  local target_path="$1"
+  if [ -e "$target_path" ] && [ ! -L "$target_path" ]; then
+    local backup_path="${target_path}.backup.${TIMESTAMP}"
+    echo "📦 Backing up $target_path to $backup_path"
+    mv "$target_path" "$backup_path"
   fi
 }
 
-# Check and install stow if missing
-if ! command -v stow >/dev/null 2>&1; then
-  echo "GNU Stow not found."
-  install_stow
+shopt -s nullglob dotglob
+
+# Symlink entire .config folder
+if [ -d "$CONFIGS_DIR/.config" ]; then
+  target="$HOME_DIR/.config"
+  backup_if_exists "$target"
+  echo "🔗 Linking entire .config folder"
+  ln -sfn "$(realpath "$CONFIGS_DIR/.config")" "$target"
 fi
 
-# Backup existing ~/.config if it exists and isn't a symlink
-if [ -d "$CONFIG_TARGET" ] && [ ! -L "$CONFIG_TARGET" ]; then
-  BACKUP_DIR="${CONFIG_TARGET}.backup.${TIMESTAMP}"
-  echo "Backing up existing config to: $BACKUP_DIR"
-  mv "$CONFIG_TARGET" "$BACKUP_DIR"
-fi
+DOTFILES_DIR="$CONFIGS_DIR/dotfiles"
+echo "📦 Linking individual dotfiles from $DOTFILES_DIR..."
 
-# Ensure ~/.config exists
-mkdir -p "$CONFIG_TARGET"
+# Link individual dotfiles inside configs/dotfiles/
+for file in "$DOTFILES_DIR"/*; do
+  basefile=$(basename "$file")
+  # Skip . and ..
+  if [[ "$basefile" == "." || "$basefile" == ".." ]]; then
+    continue
+  fi
+  [ -e "$file" ] || continue
 
-# Run stow to symlink the contents of .config into ~/.config
-echo "Linking configuration using stow..."
-stow --target="$CONFIG_TARGET" "$CONFIG_SOURCE"
+  target="$HOME_DIR/$basefile"
+  backup_if_exists "$target"
+
+  echo "🔗 Linking file $basefile"
+  ln -sfn "$(realpath "$file")" "$target"
+done
 
 echo "✅ Configuration successfully linked."
+

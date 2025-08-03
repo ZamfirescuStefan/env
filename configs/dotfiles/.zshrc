@@ -17,7 +17,7 @@ elif [[ "$OS_TYPE" == "Linux" ]]; then
   alias ls="ls --color=auto"  # Linux uses --color=auto
 fi
 
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions copypath zsh-autosuggestions history-substring-search)
 
 export ZSH="$HOME/.oh-my-zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -25,6 +25,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 ZSH_THEME="robbyrussell"
 
 bindkey '^L' autosuggest-accept
+
+bindkey '^J' history-substring-search-up
+bindkey '^K' history-substring-search-down
 
 source $ZSH/oh-my-zsh.sh
 
