@@ -1,6 +1,24 @@
+[user]
+    name = Stefan Zamfirescu
+[core]
+    editor = nvim
+[push]
+	autoSetupRemote = true
 [alias]
     co = checkout
-    lol = log --oneline --color
+    ci = commit
+    cia = commit --amend
+    cp = cherry-pick
+    #####
+    rs = reset --soft HEAD~1
+    lg = log --oneline --graph --decorate --all --color
+    ss = stash save
+    sp = stash pop
+    #####
+    rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase --interactive
 [init]
         defaultBranch = main
 [include]
