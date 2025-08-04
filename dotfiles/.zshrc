@@ -18,6 +18,10 @@ elif [[ "$OS_TYPE" == "Linux" ]]; then
   alias ls="ls --color=auto"  # Linux uses --color=auto
 fi
 
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/history
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
