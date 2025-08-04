@@ -17,7 +17,7 @@ elif [[ "$OS_TYPE" == "Linux" ]]; then
   alias ls="ls --color=auto"  # Linux uses --color=auto
 fi
 
-plugins=(git zsh-autosuggestions copypath history-substring-search zsh-syntax-highlighting )
+plugins=(git zsh-completions zsh-autosuggestions copypath history-substring-search zsh-syntax-highlighting )
 
 export ZSH="$HOME/.oh-my-zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -28,6 +28,11 @@ bindkey '^L' autosuggest-accept
 
 bindkey '^J' history-substring-search-up
 bindkey '^K' history-substring-search-down
+
+_make() {
+  local expl
+  compadd -- $(awk -F: '/^[a-zA-Z0-9_.-][^$#\/\t=]*:/ { print $1 }' Makefile 2>/dev/null)
+}
 
 source $ZSH/oh-my-zsh.sh
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
