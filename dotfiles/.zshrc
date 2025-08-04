@@ -18,6 +18,12 @@ elif [[ "$OS_TYPE" == "Linux" ]]; then
   alias ls="ls --color=auto"  # Linux uses --color=auto
 fi
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 plugins=(git zsh-completions zsh-autosuggestions copypath history-substring-search zsh-syntax-highlighting)
 
 bindkey '^L' autosuggest-accept
