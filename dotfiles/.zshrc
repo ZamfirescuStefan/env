@@ -30,4 +30,5 @@ bindkey '^J' history-substring-search-up
 bindkey '^K' history-substring-search-down
 
 source $ZSH/oh-my-zsh.sh
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
