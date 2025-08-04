@@ -43,3 +43,5 @@ vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
 
+vim.keymap.set('n', '<leader>on', ':edit ~/notes/notes<CR>')
+vim.keymap.set('n', '<leader>od', ':edit ~/notes/dump<CR>')
