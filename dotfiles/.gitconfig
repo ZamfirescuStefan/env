@@ -1,5 +1,6 @@
 [user]
     name = Stefan Zamfirescu
+    email = zamfirescu.stefan12@gmail.com
 [core]
     editor = nvim
 [push]
