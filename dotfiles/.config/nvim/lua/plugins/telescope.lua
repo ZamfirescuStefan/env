@@ -51,9 +51,8 @@ return {
                       auto_quoting = true,
                       mappings = {
                         i = {
-                          ["<C-a>"] = lga_actions.quote_prompt({ postfix = " --hidden --no-ignore " }),
                           ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-                          ["<C-space>"] = lga_actions.to_fuzzy_refine,
+                          ["<C-I>"] = lga_actions.quote_prompt({ postfix = " --hidden --no-ignore  --iglob " }),
                         },
                       },
                 }
