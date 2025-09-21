@@ -51,8 +51,10 @@ return {
                       auto_quoting = true,
                       mappings = {
                         i = {
+                          -- Command example: "test" --iglob *.log
                           ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-                          ["<C-I>"] = lga_actions.quote_prompt({ postfix = " --hidden --no-ignore  --iglob " }),
+                          -- If you want just to search in all files but not with a specific pattern you can put *
+                          ["<C-u>"] = lga_actions.quote_prompt({ postfix = " --hidden --no-ignore --iglob " }),
                         },
                       },
                 }
