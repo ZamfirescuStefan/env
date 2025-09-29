@@ -5,6 +5,8 @@
     editor = nvim
 [push]
 	autoSetupRemote = true
+[pull]
+    rebase = true
 [alias]
     co = checkout
     ci = commit
