@@ -1,7 +1,6 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
-  lazy = true,
+  "obsidian-nvim/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -11,20 +10,21 @@ return {
   --   "BufReadPre path/to/my-vault/*.md",
   --   "BufNewFile path/to/my-vault/*.md",
   -- },
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
-  },
+  ---@module 'obsidian'
+  ---@type obsidian.config
   opts = {
-    workspaces = {
-      {
-        name = "personal",
-        path = "/Users/stefanzamfirescu/Library/Mobile Documents/iCloud~md~obsidian/Documents/My Vault",
-      }
-    },
-
-    -- see below for full list of options 👇
-  },
+      workspaces = {
+          {
+              name = "personal",
+              path = "~/MyVault",
+          }
+      },
+      legacy_commands = false,
+      conceallevel = 2,
+      templates = {
+          folder = "Templates",
+          date_format = "%Y-%m-%d-%a",
+          time_format = "%H:%M",
+      },
+  }
 }
