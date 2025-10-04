@@ -1,30 +1,35 @@
 return {
-  "obsidian-nvim/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
-  ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre path/to/my-vault/*.md",
-  --   "BufNewFile path/to/my-vault/*.md",
-  -- },
-  ---@module 'obsidian'
-  ---@type obsidian.config
-  opts = {
-      workspaces = {
-          {
-              name = "personal",
-              path = "~/MyVault",
-          }
-      },
-      legacy_commands = false,
-      conceallevel = 2,
-      templates = {
-          folder = "Templates",
-          date_format = "%Y-%m-%d-%a",
-          time_format = "%H:%M",
-      },
-  }
+    "obsidian-nvim/obsidian.nvim",
+    version = "*",
+    opts = {
+        workspaces = {
+            {
+                name = "personal",
+                path = "~/MyVault",
+            }
+        },
+        legacy_commands = false,
+        conceallevel = 2,
+        disable_frontmatter = true,
+        notes_subdir = "Notes",
+        new_notes_location = "notes_subdir",
+        templates = {
+            folder = "Templates",
+            date_format = "%Y-%m-%d-%a",
+            time_format = "%H:%M",
+        },
+    },
+    config = function(_, opts)
+        local obsidian = require("obsidian")
+        obsidian.setup(opts)
+
+        vim.keymap.set("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>", { desc = "Obsidian quick switch" })
+        vim.keymap.set("n", "<leader>os", "<cmd>Obsidian search<CR>", { desc = "Obsidian search notes" })
+        vim.keymap.set("n", "<leader>ot", "<cmd>Obsidian new_from_template<CR>", { desc = "Obsidian new from template" })
+        vim.keymap.set("n", "<leader>ogd", "<cmd>Obsidian follow_link<CR>", { desc = "Obsidian follow link" })
+        vim.keymap.set("n", "<leader>ob", "<cmd>Obsidian back_links<CR>", { desc = "Obsidian back links" })
+
+        vim.keymap.set("n", "<leader>of", function()
+            vim.cmd.Ex("~/MyVault") end, { desc = "Open folder in netrw" })
+        end,
 }
