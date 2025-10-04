@@ -9,7 +9,6 @@ return {
             }
         },
         legacy_commands = false,
-        conceallevel = 2,
         disable_frontmatter = true,
         notes_subdir = "Notes",
         new_notes_location = "notes_subdir",
@@ -20,6 +19,9 @@ return {
         },
     },
     config = function(_, opts)
+        vim.o.conceallevel = 2
+        vim.o.concealcursor = "nc"
+
         local obsidian = require("obsidian")
         obsidian.setup(opts)
 
