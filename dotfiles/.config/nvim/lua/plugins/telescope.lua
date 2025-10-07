@@ -17,6 +17,13 @@ return {
 
         telescope.setup {
             defaults = {
+                layout_strategy = 'horizontal',
+                    layout_config = {
+                      width = 0.92,
+                      height = 0.98,
+                      preview_width = 0.55,
+                      prompt_position = "bottom",
+                    },
                 mappings = {
                     i = {
                         ['<C-k>'] = actions.cycle_history_next,
