@@ -31,3 +31,8 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.wo.relativenumber = true
     end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "json",
+  command = "setlocal conceallevel=0",
+})
