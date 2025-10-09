@@ -30,10 +30,10 @@ vim.keymap.set('i', '<C-c>', '<Esc>')
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Resize windows
-vim.api.nvim_set_keymap('n', '<C-Up>', ':resize +4<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-Down>', ':resize -4<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-h>', ':vertical resize +4<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-l>', ':vertical resize -4<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-k>', ':resize +4<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-j>', ':resize -4<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-h>', ':vertical resize +4<CR>', opts)
+vim.api.nvim_set_keymap('n', '<A-l>', ':vertical resize -4<CR>', opts)
 
 -- Copy file paths
 vim.keymap.set('n', '<leader>cf', '<cmd>let @+ = expand(\"%\")<CR>', { desc = 'Copy File Name' })
