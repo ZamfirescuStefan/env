@@ -1,22 +1,19 @@
 return {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'compat-07',
+    'neovim/nvim-lspconfig',
     dependencies = {
-        {'neovim/nvim-lspconfig'},
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'L3MON4D3/LuaSnip'},
         {'williamboman/mason.nvim'},
         {'williamboman/mason-lspconfig.nvim'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'}
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'hrsh7th/nvim-cmp'},
     },
 
     config = function()
+        local servers = {
+            'clangd',
+            'cmake'
+        }
 
-        local lsp_zero = require('lsp-zero')
-
-        lsp_zero.on_attach(function(client, bufnr)
+        local lspKeys = function(client, bufnr)
             local opts = {buffer = bufnr, remap = false}
 
             vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
@@ -29,39 +26,53 @@ return {
             vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
             vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
             vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-        end)
+
+        end
 
         require('mason').setup()
-
-        local mason_lsp = require('mason-lspconfig').setup({
-            ensure_installed = {'clangd', 'cmake'},
-            handlers = {
-                lsp_zero.default_setup,
-                lua_ls = function()
-                    local lua_opts = lsp_zero.nnim_lua_ls()
-                    require('lspconfig').lua_ls.setup(lua_opts)
-                end,
-            },
+        require('mason-lspconfig').setup({
+            ensure_installed = servers,
         })
 
-        require("mason-nvim-dap").setup({
-            ensure_installed = { "codelldb", "cpptools" }
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        vim.lsp.config('*', {
+            capabilities = capabilities,
         })
+
+        vim.lsp.enable(servers)
+
+        local lsp_group = vim.api.nvim_create_augroup('UserLspAttach', { clear = true })
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = lsp_group,
+            desc = 'Set buffer-local keymaps and options after an LSP client attaches',
+            callback = function(args)
+                local bufnr = args.buf
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                if not client then
+                    return
+                end
+                lspKeys(client, bufnr)
+
+                if client.server_capabilities.completionProvider then
+                    vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
+                    vim.bo[bufnr].formatexpr = 'v:lua.vim.lsp.formatexpr()'
+                end
+            end,
+        })
+
+
 
         local cmp = require('cmp')
-        local cmp_select = {behovior = cmp.SelectBehavior.Select}
-
-        require('luasnip.loaders.from_vscode').lazy_load()
+        local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
         cmp.setup({
             sources = {
                 {name = 'path'},
-                {name = 'nvim_lsp'}, 
-                {name = 'nvim_lua'}, 
-                {name = 'luasnip', keyword_length = 2}, 
-                {name = 'buffer', keyword_length = 3}, 
+                {name = 'nvim_lsp'},
+                {name = 'nvim_lua'},
+                {name = 'buffer', keyword_length = 3},
             },
-            formatting = lsp_zero.cmp_format({details = false}),
             mapping = cmp.mapping.preset.insert({
                 ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
@@ -70,5 +81,31 @@ return {
             }),
         })
 
+        -- setting for diagnostics to show virtual text for errors and warnings
+        vim.diagnostic.config({
+            virtual_text = {
+                prefix = '●',
+                spacing = 2,
+            },
+            signs = true,
+        })
+
+        -- Lua config, set vim as global to avoid undefined variable warning
+        vim.lsp.config('lua_ls', {
+            on_attach = function(client, bufnr)
+                lspKeys(client, bufnr)
+            end,
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        checkThirdParty = false,
+                    },
+                },
+            },
+        })
     end
 }

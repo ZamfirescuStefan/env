@@ -15,6 +15,9 @@ return {
         dapui.setup()
         require("nvim-dap-virtual-text").setup()
 
+        require("mason-nvim-dap").setup({
+            ensure_installed = { "codelldb", "cpptools" }
+        })
         -- Detect the operating system
         local os_name = vim.loop.os_uname().sysname
 
