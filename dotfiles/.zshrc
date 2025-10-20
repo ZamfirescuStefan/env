@@ -35,6 +35,9 @@ bindkey '^ ' autosuggest-accept
 bindkey '^J' history-substring-search-up
 bindkey '^K' history-substring-search-down
 
+bindkey -r '^E'             # unbind default end-of-line
+bindkey '^E' edit-command-line
+
 unsetopt MENU_COMPLETE
 unsetopt AUTO_MENU
 setopt AUTO_LIST
