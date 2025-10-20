@@ -13,8 +13,7 @@ return
           window = {
             layout = 'vertical',
             width = 0.5,
-          },
-          auto_insert_mode = true,
+          }
         })
 
         vim.keymap.set("n", "<leader>cc", ":CopilotChatToggle<CR>", { desc = "Toggle CopilotChat panel" })

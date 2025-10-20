@@ -72,7 +72,7 @@ button:hover {
     padding: 0 10px;
     color: #ffffff;
 }
-
+#custom-power
 #window,
 #workspaces {
     margin: 0 4px;
@@ -84,6 +84,12 @@ button:hover {
 
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
+}
+
+#custom-power {
+    padding: 0 5px 0 10px;
+    color: #ffffff;
+    background: #000000;
 }
 
 #clock {
@@ -201,7 +207,7 @@ label:focus {
 }
 
 #idle_inhibitor {
-    padding: 0 10 0 5px;
+    padding: 0 10px 0 5px;
     color: #ffffff;
     background-color: #000000;
 }

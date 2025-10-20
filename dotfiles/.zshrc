@@ -30,7 +30,7 @@ alias ......="cd ../../../../.."
 
 plugins=(git zsh-completions zsh-autosuggestions copypath history-substring-search zsh-syntax-highlighting)
 
-bindkey '^L' autosuggest-accept
+bindkey '^ ' autosuggest-accept
 
 bindkey '^J' history-substring-search-up
 bindkey '^K' history-substring-search-down
