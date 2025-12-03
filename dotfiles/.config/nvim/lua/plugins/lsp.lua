@@ -61,12 +61,13 @@ return {
             end,
         })
 
-
-
         local cmp = require('cmp')
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
         cmp.setup({
+            completion = {
+                completeopt = 'menu,menuone,noinsert',
+            },
             sources = {
                 {name = 'path'},
                 {name = 'nvim_lsp'},
