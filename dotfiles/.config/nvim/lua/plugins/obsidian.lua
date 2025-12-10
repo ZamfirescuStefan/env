@@ -17,6 +17,9 @@ return {
             date_format = "%Y-%m-%d-%a",
             time_format = "%H:%M",
         },
+        note_id_func = function(title)
+        return title
+        end,
     },
     config = function(_, opts)
         vim.o.conceallevel = 2
