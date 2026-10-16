@@ -14,7 +14,7 @@
     cp = cherry-pick
     #####
     rs = reset --soft HEAD~1
-    lg = log --oneline --graph --decorate --all --color
+    lg = log --oneline --graph --decorate --color
     lol = log --oneline --graph --decorate --color
     ss = stash save
     sp = stash pop
@@ -27,3 +27,5 @@
         defaultBranch = main
 [include]
     path = ~/.gitconfig.local
+[color]
+	ui = auto

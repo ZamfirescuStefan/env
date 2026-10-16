@@ -9,7 +9,9 @@ return {
             }
         },
         legacy_commands = false,
-        disable_frontmatter = true,
+        frontmatter = {
+            enable = true
+        },
         notes_subdir = "Notes",
         new_notes_location = "notes_subdir",
         templates = {

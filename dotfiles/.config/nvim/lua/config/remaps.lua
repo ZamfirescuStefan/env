@@ -44,6 +44,7 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 
 vim.keymap.set('n', '<leader>on', ':edit ~/notes/notes.md<CR>')
-vim.keymap.set('n', '<leader>od', ':edit ~/notes/dump.md<CR>')
+vim.keymap.set('n', '<leader>ol', ':edit ~/notes/logs.md<CR>')
+vim.keymap.set('n', '<leader>od', ':edit ~/notes/dump<CR>')
 
 vim.keymap.set("n", "<C-a>", "<Nop>", { desc = "Disable Ctrl+A" })
