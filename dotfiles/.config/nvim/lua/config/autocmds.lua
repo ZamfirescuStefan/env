@@ -17,10 +17,11 @@ vim.g.clipboard = {
     },
     paste = {
         ["+"] = function()
-            return { vim.fn.getreg("+") }
+            return { vim.fn.split(vim.fn.getreg("+"), "\n") }
         end,
         ["*"] = function()
-            return { vim.fn.getreg("*") }
+            return { vim.fn.split(vim.fn.getreg("*"), "\n") }
+
         end,
     },
 }
