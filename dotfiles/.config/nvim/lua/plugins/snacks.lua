@@ -34,7 +34,6 @@ return {
         { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
         { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff Hunks" },
         { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-        -- { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log" },
     },
 }
 
