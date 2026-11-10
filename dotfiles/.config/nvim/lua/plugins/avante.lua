@@ -19,7 +19,7 @@ return {
     instructions_file = "avante.md",
     provider = "copilot",
     file_selector = {
-      provider = "telescope",
+      provider = "snacks",
       provider_opts = {},
   },
   windows = {
@@ -58,7 +58,6 @@ return {
     { "ColinKennedy/mega.cmdparse", dependencies = { "ColinKennedy/mega.logging" } },
     --- The below dependencies are optional,
     "nvim-mini/mini.pick", -- for file_selector provider mini.pick
-    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "echasnovski/mini.icons",
