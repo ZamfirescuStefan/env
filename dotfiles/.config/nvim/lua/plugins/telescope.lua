@@ -105,6 +105,10 @@ return {
             })
         end, {})
 
+        vim.keymap.set("n", "<leader>ml", function()
+            require("telescope.builtin").marks()
+        end, { desc = "Search project marks with Telescope" })
+
         telescope.load_extension 'fzf'
         telescope.load_extension 'live_grep_args'
         telescope.load_extension 'neoclip'

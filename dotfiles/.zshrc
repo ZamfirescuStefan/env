@@ -49,6 +49,7 @@ _make() {
 }
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+source "$HOME/.cargo/env"
 source $ZSH/oh-my-zsh.sh
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
