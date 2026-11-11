@@ -73,10 +73,29 @@ return {
         { '<leader>gs', function() Snacks.picker.git_status() end, desc = 'Git Status' },
         { '<leader>gS', function() Snacks.picker.git_stash() end, desc = 'Git Stash' },
         { '<leader>gf', function() Snacks.picker.git_log_file() end, desc = 'Git Log File' },
-        { '<leader>gg', function() Snacks.lazygit() end, desc = 'Lazygit' },
 
         { "<leader>kw", function() Snacks.toggle.option("wrap", { name = "Wrap" }):toggle() end, desc = "Toggle Wrap" },
         { "<leader>kc", function() Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):toggle() end, desc = "Toggle Conceal Level" },
+        {
+            '<leader>gg',
+            function()
+                -- Find the git directory or submodule root closest to the current file
+                local current_file = vim.api.nvim_buf_get_name(0)
+                local current_dir = current_file ~= "" and vim.fn.fnamemodify(current_file, ":h") or vim.fn.getcwd()
+
+                -- Ask git to find the root of the repository for this specific path
+                local git_root = vim.fn.systemlist({ "git", "-C", current_dir, "rev-parse", "--show-toplevel" })[1]
+
+                if vim.v.shell_error == 0 and git_root then
+                    -- Open Lazygit scoped directly to the submodule/closest repo root
+                    Snacks.lazygit({ cwd = git_root })
+                else
+                    -- Fallback to default behavior if not inside a git context
+                    Snacks.lazygit()
+                end
+            end, 
+            desc = 'Lazygit (Closest Repo / Submodule)' 
+        },
     },
 }
 

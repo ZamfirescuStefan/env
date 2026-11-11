@@ -1,0 +1,6 @@
+gui:
+  showFileTree: false
+git:
+  diffRenderers:
+    - colorArg: always
+      command: "delta --dark --paging=never --plus-style='syntax #1f3a2a' --minus-style='syntax #3a1f25'"
