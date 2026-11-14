@@ -78,8 +78,6 @@ def main():
 
     obj = Installer(args.json_file, args.dry)
     obj.install()
-    # obj = Installer(sys.argv[1], True)
-    # obj.install()
 
 
 if __name__ == "__main__":
