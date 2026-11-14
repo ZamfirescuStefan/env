@@ -6,7 +6,7 @@
             "os" : "Linux"
         },
         {
-            "name" : "mkdir -p ~/apps && cd ~/apps && curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && tar -C ~/apps -xzf nvim-linux-x86_64.tar.gz && echo PATH=\"\\$PATH:~/apps/nvim-linux-x86_64/bin\" >> ~/.zshrc",
+            "name" : "mkdir -p ~/apps && cd ~/apps && curl -LO https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz && tar -C ~/apps -xzf nvim-linux-x86_64.tar.gz && echo export PATH=\"\\~/apps/nvim-linux-x86_64/bin:$PATH\" >> ~/.zshrc.local",
             "os" : "Linux"
         },
         {
@@ -34,6 +34,19 @@
         {
             "name" : "python3.12-venv",
             "app" : true
+        },
+        {
+            "name" : "mkdir -p ~/notes ~/MyVault",
+            "app": "false"
+        },
+        {
+            "name" : "lazygit",
+            "app" : true
+        },
+        {
+            "name" : "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+            "app" : false
         }
+
     ]
 }
