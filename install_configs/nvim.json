@@ -6,7 +6,7 @@
             "os" : "Linux"
         },
         {
-            "name" : "mkdir -p ~/apps && cd ~/apps && curl -LO https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz && tar -C ~/apps -xzf nvim-linux-x86_64.tar.gz && echo export PATH=\"\\~/apps/nvim-linux-x86_64/bin:$PATH\" >> ~/.zshrc.local",
+            "name" : "mkdir -p ~/apps && cd ~/apps && curl -LO https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz && tar -C ~/apps -xzf nvim-linux-x86_64.tar.gz && echo export PATH=\"\\~/apps/nvim-linux-x86_64/bin:\$PATH\" >> ~/.zshrc.local",
             "os" : "Linux"
         },
         {
@@ -42,7 +42,7 @@
         },
         {
             "name" : "mkdir -p ~/notes ~/MyVault",
-            "app": "false"
+            "app": false
         },
         {
             "name" : "lazygit",
